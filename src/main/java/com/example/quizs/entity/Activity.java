@@ -1,6 +1,7 @@
 package com.example.quizs.entity;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -16,8 +17,10 @@ public class Activity {
 	
 	private String name;
 	private String description;
+	private List<String> questions;
 	private LocalDateTime startTime;
 	private LocalDateTime endTime;
+	private boolean published;
 	
 	//no-argument constructor
 	public Activity() {
@@ -25,13 +28,15 @@ public class Activity {
 	}
 
 	//constructor
-	public Activity(Long id, String name, String description, LocalDateTime startTime, LocalDateTime endTime) {
+	public Activity(Long id, String name, String description,List<String> questions, LocalDateTime startTime, LocalDateTime endTime, boolean published) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.description = description;
+		this.questions = questions;
 		this.startTime = startTime;
 		this.endTime = endTime;
+		this.published = published;
 	}
 
 	//getters and setters
@@ -58,6 +63,14 @@ public class Activity {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	
+	public List<String> getQuestions() {
+		return questions;
+	}
+
+	public void setQuestions(List<String> questions) {
+		this.questions = questions;
+	}
 
 	public LocalDateTime getStartTime() {
 		return startTime;
@@ -73,6 +86,14 @@ public class Activity {
 
 	public void setEndTime(LocalDateTime endTime) {
 		this.endTime = endTime;
+	}
+
+	public boolean isPublished() {
+		return published;
+	}
+
+	public void setPublished(boolean published) {
+		this.published = published;
 	}
 	
 }
