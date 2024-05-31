@@ -1,6 +1,9 @@
 package com.example.quizs.service.impl;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.example.quizs.constant.ResMsg;
 import com.example.quizs.entity.User;
@@ -9,6 +12,7 @@ import com.example.quizs.service.ifs.UserService;
 import com.example.quizs.vo.UserVoteReq;
 import com.example.quizs.vo.UserVoteRes;
 
+@Service
 public class UserServiceImpl implements UserService {
 
 	private final UserRepository userRepository;
@@ -45,6 +49,7 @@ public class UserServiceImpl implements UserService {
 	
 	//validation function
 	private boolean isValidUserVoteReq(UserVoteReq userVoteReq) {
+		//validate if request is null
 		return userVoteReq != null
 				&& userVoteReq.getName() != null && !userVoteReq.getName().isEmpty()
 				&& userVoteReq.getPhone() != null && !userVoteReq.getPhone().isEmpty()

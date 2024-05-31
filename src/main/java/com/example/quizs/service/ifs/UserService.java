@@ -6,4 +6,5 @@ import com.example.quizs.vo.UserVoteRes;
 public interface UserService {
 
 	UserVoteRes saveUser(UserVoteReq userVoteReq);
+	
 }	
