@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.quizs.constant.ResMsg;
-import com.example.quizs.entity.Activity;
+import com.example.quizs.entity.Questionnaire;
 import com.example.quizs.entity.User;
-import com.example.quizs.service.ifs.ActivityService;
+import com.example.quizs.service.ifs.QuestionnaireService;
 import com.example.quizs.service.ifs.UserService;
 import com.example.quizs.vo.UserVoteReq;
 import com.example.quizs.vo.UserVoteRes;
@@ -20,7 +20,7 @@ public class UserVoteController {
 	private final UserService userService;
 	
 	@Autowired
-	public UserVoteController(UserService userService, ActivityService activityService) {
+	public UserVoteController(UserService userService, QuestionnaireService activityService) {
 		this.userService = userService;
 	}
 	
