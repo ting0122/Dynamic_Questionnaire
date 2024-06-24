@@ -33,7 +33,7 @@ public class QuestionnaireServiceImpl implements QuestionnaireService {
 		
 		if(id != null) {
 			Optional<Questionnaire> Opt = questionnaireRepository.findById(id);
-				System.out.println(Opt.get());
+//				System.out.println(Opt.get());
 				if(Opt.isPresent()) {	
 					return new QuestionnaireRes(ResMsg.SUCCESS.getCode(),ResMsg.SUCCESS.getDescription(), Opt.get());
 				} else {

@@ -1,11 +1,16 @@
 package com.example.quizs.entity;
 
-import java.util.List;
+import java.util.Map;
 
+import jakarta.persistence.CollectionTable;
+import jakarta.persistence.Column;
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.MapKeyColumn;
 
 @Entity
 public class User {
@@ -14,28 +19,39 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@Column
 	private String name;
+	
+	@Column
 	private String phone;
+	
+	@Column
 	private String mail;
+	
+	@Column
 	private int age;
-	private List<String> choices;
-	private String comments;
 	
-	//constructor
+	@ElementCollection
+	@CollectionTable(name = "response_answers", joinColumns = @JoinColumn(name = "response_id"))
+	@MapKeyColumn(name = "question_id")
+	@Column(name = "answer")
+	private Map<Long, String> answers;
+
 	public User() {
-		
+		super();
+		// TODO Auto-generated constructor stub
 	}
-	
-	public User(String name, String phone, String mail, int age, List<String> choices, String comments) {
+
+	public User(Long id, String name, String phone, String mail, int age, Map<Long, String> answers) {
+		super();
+		this.id = id;
 		this.name = name;
 		this.phone = phone;
 		this.mail = mail;
 		this.age = age;
-		this.choices = choices;
-		this.comments = comments;
+		this.answers = answers;
 	}
 
-	//getters and setters
 	public Long getId() {
 		return id;
 	}
@@ -75,20 +91,13 @@ public class User {
 	public void setAge(int age) {
 		this.age = age;
 	}
+
+	public Map<Long, String> getAnswers() {
+		return answers;
+	}
+
+	public void setAnswers(Map<Long, String> answers) {
+		this.answers = answers;
+	}
 	
-	public List<String> getChoices() {
-		return choices;
-	}
-
-	public void setChoices(List<String> choices) {
-		this.choices = choices;
-	}
-
-	public String getComments() {
-		return comments;
-	}
-
-	public void setComments(String comments) {
-		this.comments = comments;
-	}
 }

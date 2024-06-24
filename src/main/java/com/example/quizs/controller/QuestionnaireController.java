@@ -32,7 +32,7 @@ public class QuestionnaireController {
 								  @RequestParam(value = "name", required = false) String name,
 								  @RequestParam(value = "startDate", required = false) LocalDate startDate,
 								  @RequestParam(value = "endDate", required = false) LocalDate endDate) {
-		System.out.println("id :"+ id +"name :"+name+"startDate :"+startDate+"endDate :"+endDate);
+//		System.out.println("id :"+ id +"name :"+name+"startDate :"+startDate+"endDate :"+endDate);
 		return questionnaireService.searchQuestionnaire(id, name, startDate, endDate);
 	}
 	

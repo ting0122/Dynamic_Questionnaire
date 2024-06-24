@@ -36,8 +36,6 @@ public class UserServiceImpl implements UserService {
         user.setPhone(userVoteReq.getPhone());
         user.setMail(userVoteReq.getMail());
         user.setAge(userVoteReq.getAge());
-        user.setChoices(userVoteReq.getChoices());
-        user.setComments(userVoteReq.getComments());
         
         //save entity
 		userRepository.save(user);
