@@ -33,7 +33,7 @@ public class Questionnaire {
 	@Column
 	private boolean published;
 	
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "questionnaire", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Question> questions;
 
 	//constructor

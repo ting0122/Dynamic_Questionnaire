@@ -103,18 +103,19 @@ public class QuestionnaireServiceImpl implements QuestionnaireService {
 	            return new QuestionnaireRes(ResMsg.BAD_REQUEST.getCode(), ResMsg.BAD_REQUEST.getDescription());
 	     }
 		
-		Optional<Questionnaire> existingActivityOpt = questionnaireRepository.findById(questionnaireReq.getQuestionnaire().getId());
-		
 		//New a activity entity
 		Questionnaire questionnaire;
 		
-		//Value object covert to Entity
-		if(existingActivityOpt.isPresent()) {
-			questionnaire = existingActivityOpt.get();;
-		} else {
+		if(questionnaireReq.getQuestionnaire().getId() != null){
+			Optional<Questionnaire> extingOpt = questionnaireRepository.findById(questionnaireReq.getQuestionnaire().getId());
+			if(extingOpt.isPresent()){
+				questionnaire = extingOpt.get();
+			}else{
+				return new QuestionnaireRes(ResMsg.BAD_REQUEST.getCode(), ResMsg.BAD_REQUEST.getDescription());
+			}
+		}else{
 			questionnaire = new Questionnaire();
 		}
-		
 		
 		questionnaire.setName(questionnaireReq.getQuestionnaire().getName());
 		questionnaire.setDescription(questionnaireReq.getQuestionnaire().getDescription());
@@ -124,7 +125,13 @@ public class QuestionnaireServiceImpl implements QuestionnaireService {
         
 		//Convert List<Questionnaire.Question> to List<String>
 		List<Question> questionList = questionnaireReq.getQuestions().stream()
-				.map(q -> new Question(null, q.getQuestionText(),q.getChoices()))
+				.map(q -> {
+					Question question = new Question();
+					question.setTitle(q.getQuestionText());
+					question.setChoices(q.getChoices());
+					question.setQuestionnaire(questionnaire);
+					return question;
+				})
 				.collect(Collectors.toList());
 		questionnaire.setQuestions(questionList);
 		

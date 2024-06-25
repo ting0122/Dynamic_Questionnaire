@@ -8,6 +8,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Question {
@@ -22,17 +24,22 @@ public class Question {
 	@ElementCollection
 	private List<String> choices;
 
+	@ManyToOne
+	@JoinColumn(name = "questionnaire_id")
+	private Questionnaire questionnaire;	
+
 	//constructor
 	public Question() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Question(Long id, String title, List<String> choices) {
+	public Question(Long id, String title, List<String> choices, Questionnaire questionnaire) {
 		super();
 		this.id = id;
 		this.title = title;
 		this.choices = choices;
+		this.questionnaire = questionnaire;
 	}
 
 	//getters and setters
@@ -58,6 +65,14 @@ public class Question {
 
 	public void setChoices(List<String> choices) {
 		this.choices = choices;
+	}
+
+	public Questionnaire getQuestionnaire(){
+		return questionnaire;
+	}
+
+	public void setQuestionnaire(Questionnaire questionnaire){
+		this.questionnaire = questionnaire;
 	}
 	
 }
