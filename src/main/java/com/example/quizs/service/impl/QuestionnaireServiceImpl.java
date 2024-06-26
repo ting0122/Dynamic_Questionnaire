@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.quizs.constant.ResMsg;
@@ -22,7 +21,6 @@ public class QuestionnaireServiceImpl implements QuestionnaireService {
 
 	private final QuestionnaireRepository questionnaireRepository;
 	
-	@Autowired
 	public QuestionnaireServiceImpl(QuestionnaireRepository questionnaireRepository) {
 		this.questionnaireRepository = questionnaireRepository;
 	}
@@ -33,7 +31,7 @@ public class QuestionnaireServiceImpl implements QuestionnaireService {
 		
 		if(id != null) {
 			Optional<Questionnaire> Opt = questionnaireRepository.findById(id);
-//				System.out.println(Opt.get());
+				System.out.println(Opt.get());
 				if(Opt.isPresent()) {	
 					return new QuestionnaireRes(ResMsg.SUCCESS.getCode(),ResMsg.SUCCESS.getDescription(), Opt.get());
 				} else {

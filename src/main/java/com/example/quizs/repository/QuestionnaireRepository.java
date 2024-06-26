@@ -10,10 +10,6 @@ import com.example.quizs.entity.Questionnaire;
 
 public interface QuestionnaireRepository extends JpaRepository<Questionnaire, Long>{
 
-	List<Questionnaire> findAll();
-	
-	Optional<Questionnaire> findById(Long id);
-
 	Optional<Questionnaire> findByNameContaining(String name);
 
     List<Questionnaire> findByStartDateAfter(LocalDate startDate);

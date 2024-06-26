@@ -21,7 +21,6 @@ public class QuestionnaireController {
 	
 	private final QuestionnaireService questionnaireService;
 	
-	@Autowired
 	public QuestionnaireController(QuestionnaireService questionnaireService) {
 		this.questionnaireService = questionnaireService;
 	}
