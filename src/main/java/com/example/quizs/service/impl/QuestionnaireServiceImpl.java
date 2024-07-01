@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.quizs.constant.ResMsg;
 import com.example.quizs.entity.Questionnaire;
+import com.example.quizs.entity.Choice;
 import com.example.quizs.entity.Question;
 import com.example.quizs.repository.QuestionnaireRepository;
 import com.example.quizs.service.ifs.QuestionnaireService;
@@ -126,12 +127,22 @@ public class QuestionnaireServiceImpl implements QuestionnaireService {
 				.map(q -> {
 					Question question = new Question();
 					question.setTitle(q.getQuestionText());
-					question.setChoices(q.getChoices());
 					question.setQuestionnaire(questionnaire);
+
+					List<Choice> choiceList = q.getChoices().stream()
+						.map(choiceText -> {
+							Choice choice = new Choice();
+							choice.setText(choiceText);
+							choice.setQuestion(question);
+							return choice;
+						})
+						.collect(Collectors.toList());
+					question.setChoices(choiceList);
+
 					return question;
 				})
 				.collect(Collectors.toList());
-		questionnaire.setQuestions(questionList);
+			questionnaire.setQuestions(questionList);
 		
 		//save entity
 		questionnaireRepository.save(questionnaire);

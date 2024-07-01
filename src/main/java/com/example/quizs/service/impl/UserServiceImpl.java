@@ -1,8 +1,5 @@
 package com.example.quizs.service.impl;
 
-import java.util.Optional;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.quizs.constant.ResMsg;
@@ -16,8 +13,7 @@ import com.example.quizs.vo.UserVoteRes;
 public class UserServiceImpl implements UserService {
 
 	private final UserRepository userRepository;
-	
-	@Autowired
+
 	public UserServiceImpl(UserRepository userRepository) {
 		this.userRepository = userRepository;
 	}
